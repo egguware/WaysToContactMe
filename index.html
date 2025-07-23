@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Egguware</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            min-height: 100vh;
+            min-width: 100vw;
+            background: linear-gradient(135deg, #3a006a 0%, #000 100%);
+            font-family: 'Inter', Arial, sans-serif;
+        }
+        .top-banner {
+            width: 100vw;
+            background: rgba(0,0,0,0.6);
+            color: #fff;
+            font-size: 2rem;
+            font-weight: 700;
+            text-align: center;
+            padding: 32px 0 24px 0;
+            letter-spacing: 1px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 10;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.15);
+            font-family: 'Inter', Arial, sans-serif;
+        }
+        .center-box {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(calc(-50% + 100px), calc(-50% - 50px));
+            background: rgba(0,0,0,0.6);
+            color: #fff;
+            padding: 40px 48px;
+            border-radius: 18px;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.25);
+            font-size: 1.3rem;
+            max-width: 90vw;
+            width: 500px;
+            text-align: center;
+            z-index: 5;
+        }
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100vh;
+            width: 280px;
+            background: rgba(0,0,0,0.6);
+            box-shadow: 2px 0 16px rgba(0,0,0,0.2);
+            color: #fff;
+            font-family: 'Inter', Arial, sans-serif;
+            transform: translateX(-100%);
+            transition: transform 0.3s cubic-bezier(.4,0,.2,1);
+            z-index: 20;
+            display: flex;
+            flex-direction: column;
+            padding-top: 80px;
+        }
+        .sidebar.open {
+            transform: translateX(0);
+        }
+        .sidebar-close {
+            align-self: flex-end;
+            margin: 16px 24px 0 0;
+            background: none;
+            border: none;
+            color: #fff;
+            font-size: 2rem;
+            cursor: pointer;
+        }
+        .sidebar-content {
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .sidebar-btn {
+            background: rgba(0,0,0,0.7);
+            color: #fff;
+            border: none;
+            border-radius: 10px;
+            padding: 16px 24px;
+            font-size: 1.1rem;
+            font-family: 'Inter', Arial, sans-serif;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s, transform 0.2s;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+        }
+        .sidebar-btn:hover {
+            background: rgba(0,0,0,0.85);
+            transform: translateY(-2px) scale(1.03);
+        }
+        .sidebar-toggle {
+            position: fixed;
+            top: 32px;
+            left: 24px;
+            z-index: 30;
+            background: rgba(0,0,0,0.6);
+            border: none;
+            border-radius: 8px;
+            width: 48px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+        .sidebar-toggle span {
+            display: block;
+            width: 28px;
+            height: 4px;
+            background: #fff;
+            margin: 4px 0;
+            border-radius: 2px;
+            transition: 0.3s;
+        }
+        .description-box {
+            position: absolute;
+            top: calc(50% + 110px);
+            left: calc(50% + 100px);
+            transform: translate(-50%, 0);
+            background: rgba(0,0,0,0.45);
+            color: #fff;
+            padding: 28px 40px;
+            border-radius: 14px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.18);
+            font-size: 1.08rem;
+            max-width: 80vw;
+            width: 420px;
+            text-align: center;
+            z-index: 5;
+        }
+        .home-btn {
+            position: fixed;
+            top: 24px;
+            right: 32px;
+            z-index: 40;
+            background: rgba(0,0,0,0.7);
+            color: #fff;
+            border: none;
+            border-radius: 10px;
+            padding: 16px 32px;
+            font-size: 1.2rem;
+            font-family: 'Inter', Arial, sans-serif;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+            transition: background 0.2s, transform 0.2s;
+        }
+        .home-btn:hover {
+            background: rgba(0,0,0,0.85);
+            transform: translateY(-2px) scale(1.03);
+        }
+    </style>
+</head>
+<body>
+    <button class="home-btn" onclick="window.location.href='https://egguware.github.io/EgguwareMainPage/'">home</button>
+    <button class="sidebar-toggle" onclick="document.querySelector('.sidebar').classList.add('open')" aria-label="Open sidebar">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+    <div class="sidebar">
+        <button class="sidebar-close" onclick="document.querySelector('.sidebar').classList.remove('open')" aria-label="Close sidebar">&times;</button>
+        <div class="sidebar-content">
+            <button class="sidebar-btn" onclick="window.location.href='https://egguware.github.io/WaysToContactMe/'">Ways to Contact</button>
+            <button class="sidebar-btn" onclick="window.location.href='https://egguware.github.io/Sponsored-Discords/'">sponsored discord servers</button>
+            <!-- Sidebar content goes here -->
+            <p>Sidebar Content</p>
+        </div>
+    </div>
+    <div class="top-banner">Ways You Can Contact Me!</div>
+    <div class="center-box">
+        My Main Ways to contact me is on discord:notpetyatt.<br><br>
+        Or send me a email egguware.me@outlook.com 
+    </div>
+    <div class="description-box">
+        
+    </div>
+</body>
+</html>
